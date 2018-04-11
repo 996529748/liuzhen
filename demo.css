@@ -1,0 +1,236 @@
+/*通用样式*/
+div{
+	display: inline-block;
+	}
+ul{
+	padding: 0px;
+	margin: 0px;
+	width:880px;
+	margin:auto;
+	}
+li{
+	list-style-type:none;				
+	}
+h2{
+	margin-left:380px;
+	}
+h5{
+	padding: 0px;
+	margin: 0px;
+	}
+/******************表头样式**************/
+
+/*表头全选复选框*/
+.checkbox{
+	border-right: 1px solid #B0C4DE;
+	line-height: 50px;
+	}
+.checkbox input{				
+	margin: 18px;
+	}
+/*表头全选单元格样式*/
+.lid011{
+	border-right: 1px solid #D8BFD8;
+	line-height: 50px;
+	padding-left: 9px;
+	padding-right: 8px;
+	width:32px;
+	text-align:center;
+	}
+/*表头全部删除单元格*/
+.liBox{
+	border: 1px solid #B0C4DE;
+	margin-left: 20px;
+	margin-right: 20px;
+	}
+/*表头单元格li*/
+.liBox11{
+	border: 1px solid #B0C4DE;
+	border-top:0px solid #B0C4DE;
+	margin-left: 20px;
+	margin-right: 20px;	
+	}
+/*表头全部删除按钮*/
+.del{
+	background-color:#e33845;
+	color:#fff;
+	margin-left: 40.5%;
+	height:30px;
+	border-radius: 5px;
+	border:none;
+	}
+/*表头   编号-地址单元格样式*/
+.lid010{
+	border-right: 1px solid #D8BFD8;
+	line-height: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+	width:32px;
+	text-align:center;
+	}	
+/*表头   操作单元格样式*/
+.lid00000{
+	line-height: 50px;
+	padding-left: 40px;
+	padding-right: 50px;
+	width:72px;
+	text-align:center;
+	}
+
+
+/********************表格搜索框样式*******************/
+/*搜索框，新增数据单元格*/
+.title{
+	line-height: 50px;			
+	}
+/*搜索框样式*/
+#search{
+	height: 30px;
+    width: 200px;
+    margin-left: 30px;
+}
+/*搜索按钮样式*/
+.search{
+	background-color:orange;
+	color:#fff;
+	margin-top:2%;
+	margin-bottom:2%;
+	height:30px;
+	border-radius: 5px;
+	border:none;
+}
+/*搜索结果显示*/
+.liBox1{
+	border: 1px solid #B0C4DE;
+	border-top:0px solid #B0C4DE;
+	margin-left: -1px;
+	margin-right: 41px;	
+	}
+/*搜索表表头*/
+.liBox111{
+	border: 1px solid #B0C4DE;	
+	margin-left: -1px;
+	margin-right: 41px;
+
+	}
+/*搜索表样式*/
+.liBox00{
+	border: 1px solid #B0C4DE;
+	border-top:0px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border-bottom: 0px;
+	}
+
+/********************新增数据表样式*******************/
+/*新增数据编号，姓名等单元格*/
+.title1{
+	line-height: 50px;
+	margin-left: 20px;
+	margin-right:20px;		
+	border:1px solid #B0C4DE;
+	padding-right: 360px;	
+	border-top:0px;
+	}
+
+/*新增数据单元格*/
+.liBox0000{
+	border: 1px solid #B0C4DE;
+	margin-left: 20px;
+	margin-right: 20px;
+	border-bottom: 0px;
+	}
+	/*新增数据按钮单元格*/
+.liBox0001{
+	border: 1px solid #B0C4DE;
+	margin-left: 20px;
+	margin-right: 20px;
+	}
+/*新增数据单个单元格样式*/
+.lid0{
+	border-right: 1px solid #D8BFD8;
+	line-height: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+	}
+/*输入数据搜索框*/
+.lid01>input{
+	width:700px;
+	height:30px;
+	outline:none;
+	border-radius:5px;
+	border: 1px solid #DBDBDB;
+	}
+/*重置按钮样式*/
+.del3{
+	background-color:#307ab9;
+	color:#fff;
+	margin-left: 45%;
+	height:30px;
+	border-radius: 5px;
+	border:none;
+	}
+/*添加按钮样式*/
+.del4{
+	background-color:#00a94a;
+	color:#fff;
+	margin-top:2%;
+	margin-bottom:2%;
+	height:30px;
+	border-radius: 5px;
+	border:none;
+	}
+/*更新按钮样式*/
+.del5{
+	background-color:#29c4e4;
+	color:#fff;
+	height:30px;
+	border-radius: 5px;
+	border:none;
+	}
+
+/*********************动态添加数据生成表格样式************************/
+/*动态添加数据单个单元格样式*/
+.lid00{
+	border-right: 1px solid #D8BFD8;
+	line-height: 50px;
+	padding-left: 30px;
+	padding-right: 30px;
+	width:60px;
+	text-align:center;
+	}
+
+/*动态添加表格单元格-地址样式*/
+.lid000{
+	line-height: 50px;
+	padding-left: 20px;
+	padding-right: 50px;
+	width:82px;
+	text-align:center;
+	}
+
+/*动态添加表格删除按钮div*/
+.lid0000{
+	border-left:1px solid #D8BFD8;
+	line-height: 50px;
+	margin-left:-32px;
+	}
+
+/*单元格删除按钮*/
+.del0{
+	background-color:#e33845;
+	color:#fff;
+	height:30px;
+	margin-left:45px;
+	border-radius: 5px;
+	border:none;
+	}
+/*单元格修改按钮*/
+.del1{
+	background-color:#31c1dc;
+	color:#fff;
+	height:30px;
+	margin-left:20px;
+	border-radius:5px;
+	border:none;
+	}
