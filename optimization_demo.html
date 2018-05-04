@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Demo</title>
+		<link rel="stylesheet" href="optimization_demo.css" />
+	</head>
+	<body>
+		<!--第一张表-->
+			<ul id="ul">
+				<li>
+					<div class="header_div">
+						<div class="all_checkbox">
+							<h5>全选</h5>
+						</div>
+						<div class="firster_div">
+							<input type="button" value="升序" class="Ascending"/>
+							<input type="button" value="降序" class="Descending"/>
+							<input type="button" value="全部删除" class="All_del"/>
+							<input type="text" placeholder="请输入需要查找的数据编号！" class="search"/><input type="button" value="搜索" class="search_btn"/>
+						</div>
+					</div>
+				</li>
+				<li class="title_li">
+					<div class="title_div">
+						<div class="checkbox">
+							<input type="checkbox" name="chebox" id='checkbox'/>						
+						</div>
+						<div class="add_time">
+							<h5>时间</h5>
+						</div>
+						<div class="add_div">
+							<h5>编号</h5>
+						</div>
+						<div class="add_div">
+							<h5>姓名</h5>
+						</div>
+						<div class="add_div">
+							<h5>密码</h5>
+						</div>
+						<div class="add_div">
+							<h5>生日</h5>
+						</div>
+						<div class="add_div">
+							<h5>地址</h5>
+						</div>
+						<div class="add_operation">
+							<h5>操作</h5>
+						</div>
+					</div>
+				</li>
+			</ul>		
+	<!--第二张表-->
+	<form action="">
+		<ul>
+			<div class="New_data">
+				<h1>新增数据</h1>
+			</div>
+			<li class="add_number">
+				<div class="title_number">
+					<h5>编号</h5>
+				</div>
+				<div>
+					<input type="text" class="number_input input"/>
+				</div>
+			</li>
+			<li class="add_name">
+				<div class="title_name">
+					<h5>姓名</h5>
+				</div>
+				<div>
+					<input type="text" class="name_input input"/>
+				</div>
+			</li>
+			<li class="add_password">
+				<div class="title_password">
+					<h5>密码</h5>
+				</div>
+				<div>
+					<input type="text" class="password_input input"/>
+				</div>
+			</li>
+			<li class="add_birthday">
+				<div class="title_birthday">
+					<h5>生日</h5>
+				</div>
+				<div>
+					<input type="text" class="birthday_input input"/>
+				</div>
+			</li>
+			<li class="add_address">
+				<div class="title_address">
+					<h5>地址</h5>
+				</div>
+				<div>
+					<input type="text" class="address_input input"/>
+				</div>
+			</li>
+			<li class="button_bar">
+				<button type="reset"  value="Reset" class="reset_button">重置</button>
+				<button type="button" class="add_button">添加</button>
+				<button type="button" class="update_button">更新</button>
+			</li>
+		</ul>
+	</form>
+	</body>
+	
+	<script type="">
+		//创建数组，保存localStorage的值及添加数据的值
+		var add_arr=[];
+		var localStorage_arr=[];
+		var id = 0;//为数组项添加标识
+		//绑定单机事件
+		var add_button=document.getElementsByClassName('add_button');
+		add_button[0].addEventListener("click",add);
+				
+		//封装方法
+		//遍历存值数组，遍历插入表
+		function Foreach(arr){
+			for(var i=0;i<arr.length;i++){
+				var ul=document.getElementById("ul");
+				var li = document.createElement("LI");
+				li.setAttribute('class','title_li');
+				li.innerHTML="<div class='title_div'>"+
+								"<div class='checkbox'>"+
+									"<input type='checkbox' name='chebox'/>"+
+								"</div> "+
+								"<div class='add_time' title="+arr[i][0]+">"+
+									"<h5>"+arr[i][0]+"</h5>"+
+								"</div> "+
+								"<div class='add_div' title="+arr[i][1]+">"+
+									"<h5>"+arr[i][1]+"</h5>"+
+								"</div> "+
+								"<div class='add_div' title="+arr[i][2]+">"+
+									"<h5>"+arr[i][2]+"</h5>"+
+								"</div> "+
+								"<div class='add_div' title="+arr[i][3]+">"+
+									"<h5>"+arr[i][3]+"</h5>"+
+								"</div> "+
+								"<div class='add_div' title="+arr[i][4]+">"+
+									"<h5>"+arr[i][4]+"</h5>"+
+								"</div> "+
+								"<div class='add_div' title="+arr[i][5]+">"+
+									"<h5>"+arr[i][5]+"</h5>"+
+								"</div> "+
+								"<div class='add_operation'>"+
+									"<div class='delbutton_div'><button class='delcell_btn' onclick='del(this)' data-id="+id+">删除</button></div><div class='modifybutton_div'><button class='modify_btn' onclick='modify(this)' data-id="+id+">修改</button></div>"+
+								"</div> "+
+							"</div>";
+				ul.appendChild(li);				
+			}
+		}
+		
+		//清空页面数据
+		function clear(){
+			var li=document.getElementsByClassName('title_li');
+				var ul=document.getElementById('ul');	
+				for(var i=1;i<li.length;i++){	
+					if(i==0){
+							return;//i==0时跳出方法，不再执行
+						}else{
+							ul.removeChild(li[i]);//移除li
+							i--;//全部移除
+					}
+				}
+		}		
+		//添加
+		function add(){
+			id++;//每次添加完，data-id自增
+			//获取添加输入框的值，添加入add_arr;
+			var input_content_0=document.getElementsByClassName('number_input')[0].value;
+			var input_content_1=document.getElementsByClassName('name_input')[0].value;
+			var input_content_2=document.getElementsByClassName('password_input')[0].value;
+			var input_content_3=document.getElementsByClassName('birthday_input')[0].value;
+			var input_content_4=document.getElementsByClassName('address_input')[0].value;		
+			var nowDate = new Date().toLocaleString();//获取时间
+			add_arr.push([nowDate,input_content_0,input_content_1,input_content_2,input_content_3,input_content_4]);//将数据push入添加数组中
+			localStorage_arr.push([nowDate,input_content_0,input_content_1,input_content_2,input_content_3,input_content_4]);//将数据push入localstorage数组中
+			localStorage.setItem('localStorage_arr',JSON.stringify(localStorage_arr));//转为字符串形式将值存入localStorage中			
+			//每次添加,清空上一次添加的数组数据;
+			clear();				
+			//遍历存值数组add_arr且插入
+			Foreach(add_arr);			
+			//清空input
+			document.getElementsByClassName('number_input')[0].value='';
+			document.getElementsByClassName('name_input')[0].value='';
+			document.getElementsByClassName('password_input')[0].value='';
+			document.getElementsByClassName('birthday_input')[0].value='';
+			document.getElementsByClassName('address_input')[0].value='';					
+		}		
+		//单元格删除
+			function del(e){					
+				//取出localStorage所存的值，删除点击行记录
+				var data = JSON.parse(localStorage.getItem('localStorage_arr'));//取出值
+				var del_cell=e.parentNode.parentNode.parentNode.childNodes[2].innerText;
+				var Del=del_cell.split(-1,del_cell.length+1);
+				for(var i=0;i<data.length;i++){
+					if(data[i][0]==Del){
+						//删除localStorage的值					
+						console.log(data[i][0]);
+						data.splice(i,1);
+						localStorage.setItem('localStorage_arr',JSON.stringify(data));
+						var new_data = JSON.parse(localStorage.getItem('localStorage_arr'));
+						Foreach(data)
+						console.log(new_data);		
+						return;
+					}
+					//重新遍历localStorage
+					
+				}
+			}
+			
+			
+		
+		
+		
+		
+		
+		
+		//单元格修改
+		function modify(e){
+			var input_content_0=document.getElementsByClassName('number_input')[0];
+			var input_content_1=document.getElementsByClassName('name_input')[0];
+			var input_content_2=document.getElementsByClassName('password_input')[0];
+			var input_content_3=document.getElementsByClassName('birthday_input')[0];
+			var input_content_4=document.getElementsByClassName('address_input')[0];			
+			input_content_0.value = e.parentNode.parentNode.parentNode.children[2].children[0].innerHTML;
+			input_content_1.value = e.parentNode.parentNode.parentNode.children[3].children[0].innerHTML;
+			input_content_2.value = e.parentNode.parentNode.parentNode.children[4].children[0].innerHTML;
+			input_content_3.value = e.parentNode.parentNode.parentNode.children[5].children[0].innerHTML;
+			input_content_4.value = e.parentNode.parentNode.parentNode.children[6].children[0].innerHTML;
+			//获取点击记录行
+			that = e.parentNode.parentNode.parentNode;		
+			/*移除添加按钮的监听事件*/
+			add_button[0].removeEventListener("click",add);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		var update_button = document.getElementsByClassName("update_button");//获取添加按钮
+			update_button[0].addEventListener("click", update);//移除按钮监听事件
+		//单元格更新
+		function update(){
+			//获取修改之后的input值
+			var input_content_0=document.getElementsByClassName('number_input')[0].value;
+			var input_content_1=document.getElementsByClassName('name_input')[0].value;
+			var input_content_2=document.getElementsByClassName('password_input')[0].value;
+			var input_content_3=document.getElementsByClassName('birthday_input')[0].value;
+			var input_content_4=document.getElementsByClassName('address_input')[0].value;
+			//替换数据数值，重新存入localStorage
+			//遍历localStorage插入表
+			//取出localStorage的值
+			var userlist = localStorage.getItem('localStorage_arr');
+				userlist = JSON.parse(userlist);
+				console.log(userlist);
+			localStorage.setItem('localStorage_arr',JSON.stringify(localStorage_arr));
+			console.log(localStorage_arr[0][2]);
+		}
+		
+		
+		
+		
+		
+		//全部删除
+		var All_del=document.getElementsByClassName('All_del');
+			All_del[0].addEventListener("click",Alldel);
+		var li=document.getElementsByClassName('title_li');		
+		function Alldel(){
+			var ul = document.getElementById("ul");//整个表
+			var chebox=document.getElementsByName("chebox");//复选框
+			/*遍历所有复选框*/
+			for(var i=1;i<chebox.length;i++){
+				if(chebox[i].checked){//如果被选中
+					var cheboxs = chebox[i].parentNode.parentNode.parentNode;//获取被选中复选框的li
+					ul.removeChild(cheboxs);//移除ul下被选中复选框的单元格
+					i--;//全选删除页面数据
+				}
+			}			
+			localStorage.clear('localStorage_arr'); //清除localStorage存储的值
+			add_arr.splice(0,add_arr.length);//清空数组
+			console.log('暂无数据');
+		}		
+		/*复选框全选功能*/
+			var checkAll = document.getElementById("checkbox");
+				checkAll.addEventListener("click", ckAll);
+			function ckAll(){
+				var checkAll=document.getElementById("checkbox").checked;
+				var checks=document.getElementsByName("chebox");
+				for(var i=0;i<checks.length;i++){
+					checks[i].checked=checkAll;
+				}
+			}		
+		
+		//排序
+		//API
+			function sortArr(m,n){ 
+				return m-n; 
+			}			
+		//升序
+		var Ascending_btn=document.getElementsByClassName('Ascending');//获取升序按钮
+			Ascending_btn[0].addEventListener("click",Ascending);
+			function Ascending(){
+				//取出localStorage的值
+				var  a= localStorage.getItem('localStorage_arr');
+					 a= JSON.parse(a);
+				//API排序
+					a.sort(sortArr);
+				//清空页面数据
+					clear();
+				//遍历插入表
+					Foreach(a);
+			}			
+		//降序
+		var Descending_btn=document.getElementsByClassName('Descending');//获取降序按钮
+			Descending_btn[0].addEventListener("click",Descending);
+			function Descending(){			
+				//取出localStorage的值
+				var  a= localStorage.getItem('localStorage_arr');
+					 a= JSON.parse(a);
+				//API排序
+					a.sort(sortArr).reverse();		
+				//清空页面数据
+					clear();
+				//遍历插入表
+					Foreach(a);
+			}
+		
+	</script>
+</html>
